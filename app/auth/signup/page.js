@@ -1,11 +1,11 @@
 'use client'
-export const dynamic = 'force-dynamic'
+import { Suspense } from 'react'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
-export default function Signup() {
+function SignupForm() {
   const searchParams = useSearchParams()
   const [role, setRole] = useState(searchParams.get('role') || 'student')
   const [fullName, setFullName] = useState('')
@@ -35,7 +35,6 @@ export default function Signup() {
           <h1 className="text-2xl font-bold text-gray-900 mt-4">Create your account</h1>
         </div>
         <div className="card p-8">
-          {/* Role toggle */}
           <div className="flex bg-gray-100 rounded-xl p-1 mb-6">
             {['student','coach'].map(r => (
               <button key={r} onClick={() => setRole(r)}
@@ -73,4 +72,8 @@ export default function Signup() {
       </div>
     </div>
   )
+}
+
+export default function Signup() {
+  return <Suspense><SignupForm /></Suspense>
 }

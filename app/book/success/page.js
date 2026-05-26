@@ -1,11 +1,11 @@
 'use client'
-export const dynamic = 'force-dynamic'
+import { Suspense } from 'react'
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
-export default function BookingSuccess() {
+function BookingSuccessInner() {
   const searchParams = useSearchParams()
   const bookingId = searchParams.get('booking_id')
   const [booking, setBooking] = useState(null)
@@ -15,7 +15,6 @@ export default function BookingSuccess() {
   useEffect(() => {
     if (!bookingId) { setLoading(false); return }
     async function fetchBooking() {
-      // Poll briefly — webhook may take a second to confirm
       let attempts = 0
       while (attempts < 5) {
         const { data } = await supabase
@@ -32,7 +31,6 @@ export default function BookingSuccess() {
         attempts++
         await new Promise(r => setTimeout(r, 1200))
       }
-      // If still not confirmed, show generic success (webhook may be slightly delayed)
       setLoading(false)
     }
     fetchBooking()
@@ -59,7 +57,6 @@ export default function BookingSuccess() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 pt-16">
       <div className="w-full max-w-md text-center">
-        {/* Big checkmark */}
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <svg className="w-10 h-10 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
@@ -114,4 +111,8 @@ export default function BookingSuccess() {
       </div>
     </div>
   )
+}
+
+export default function BookingSuccess() {
+  return <Suspense><BookingSuccessInner /></Suspense>
 }
