@@ -8,7 +8,9 @@ import Link from 'next/link'
 
 function SignupForm() {
   const searchParams = useSearchParams()
-  const [role, setRole] = useState(searchParams.get('role') || 'student')
+  const roleParam = searchParams.get('role')
+  const [role, setRole] = useState(roleParam || 'student')
+  const roleLocked = roleParam === 'coach' || roleParam === 'student'
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -36,14 +38,23 @@ function SignupForm() {
           <h1 className="text-2xl font-bold text-gray-900 mt-4">Create your account</h1>
         </div>
         <div className="card p-8">
-          <div className="flex bg-gray-100 rounded-xl p-1 mb-6">
-            {['student','coach'].map(r => (
-              <button key={r} onClick={() => setRole(r)}
-                className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all capitalize ${role===r ? 'bg-white text-green-800 shadow-sm' : 'text-gray-500'}`}>
-                I'm a {r}
-              </button>
-            ))}
-          </div>
+          {roleLocked ? (
+            <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-800 rounded-xl px-4 py-3 mb-6">
+              <svg className="w-4 h-4 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="text-sm font-semibold capitalize">Signing up as a {role}</span>
+            </div>
+          ) : (
+            <div className="flex bg-gray-100 rounded-xl p-1 mb-6">
+              {['student','coach'].map(r => (
+                <button key={r} onClick={() => setRole(r)}
+                  className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all capitalize ${role===r ? 'bg-white text-green-800 shadow-sm' : 'text-gray-500'}`}>
+                  I'm a {r}
+                </button>
+              ))}
+            </div>
+          )}
 
           {error && <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-xl mb-4">{error}</div>}
           <form onSubmit={handleSignup} className="space-y-4">
@@ -64,7 +75,7 @@ function SignupForm() {
             </button>
           </form>
           {role === 'coach' && (
-            <p className="text-xs text-gray-400 text-center mt-3">Founding coaches get 0% commission for their first 3 months.</p>
+            <p className="text-xs text-gray-400 text-center mt-3">Founding coaches join free — no platform fee for your first 3 months.</p>
           )}
           <p className="text-center text-sm text-gray-500 mt-4">
             Already have an account? <Link href="/auth/login" className="text-green-700 font-semibold hover:underline">Sign in</Link>

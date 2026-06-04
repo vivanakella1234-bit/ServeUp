@@ -77,9 +77,33 @@ export default function CoachesPage() {
         {loading ? (
           <div className="text-center py-20 text-gray-400">Loading coaches...</div>
         ) : coaches.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-gray-500 text-lg">No coaches found in that area yet.</p>
-            <p className="text-gray-400 text-sm mt-2">Try a different city or check back soon — we're growing fast.</p>
+          <div className="py-16">
+            {/* Coach CTA — primary */}
+            <div className="bg-white border border-green-100 rounded-2xl p-8 max-w-2xl mx-auto text-center shadow-sm mb-6">
+              <div className="text-4xl mb-4">🎾</div>
+              <h2 className="text-2xl font-black text-gray-900 mb-2">
+                {city.trim() ? `Be the first coach in ${city.trim()}.` : 'Be a founding coach on ServeUp.'}
+              </h2>
+              <p className="text-gray-500 mb-6 leading-relaxed">
+                We're onboarding founding coaches right now — get discovered by students in your area before anyone else. <strong className="text-green-700">No platform fee for your first 3 months.</strong> Setup takes 5 minutes.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="/auth/signup?role=coach"
+                  className="bg-green-700 text-white font-bold px-8 py-3 rounded-xl hover:bg-green-800 transition">
+                  List My Profile — It's Free
+                </a>
+                <a href="/"
+                  className="border border-gray-200 text-gray-600 font-medium px-8 py-3 rounded-xl hover:bg-gray-50 transition">
+                  Learn How It Works
+                </a>
+              </div>
+            </div>
+            {/* Student note */}
+            <p className="text-center text-gray-400 text-sm">
+              Looking for a coach?{' '}
+              <a href="/auth/signup" className="text-green-600 hover:underline font-medium">Create a student account</a>
+              {' '}— coaches are joining every week.
+            </p>
           </div>
         ) : (
           <>

@@ -4,12 +4,50 @@ import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 
+// ─── Helpers ────────────────────────────────────────────────
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+const DAY_ABBR    = ['Su','Mo','Tu','We','Th','Fr','Sa']
+
+function toDateStr(date) {
+  const y = date.getFullYear()
+  const m = String(date.getMonth()+1).padStart(2,'0')
+  const d = String(date.getDate()).padStart(2,'0')
+  return `${y}-${m}-${d}`
+}
+
+function fmt12(timeStr) {
+  const [h, m] = timeStr.split(':').map(Number)
+  const ampm = h >= 12 ? 'PM' : 'AM'
+  const h12 = h % 12 || 12
+  return `${h12}:${m.toString().padStart(2,'0')} ${ampm}`
+}
+
+function getSlots(dateStr, availRow, bookedSet, duration = 60) {
+  const slots = []
+  const [sh, sm] = availRow.start_time.slice(0,5).split(':').map(Number)
+  const [eh, em] = availRow.end_time.slice(0,5).split(':').map(Number)
+  let cur = sh * 60 + sm
+  const last = eh * 60 + em - duration
+  while (cur <= last) {
+    const hh = String(Math.floor(cur/60)).padStart(2,'0')
+    const mm = String(cur%60).padStart(2,'0')
+    const key = `${dateStr}T${hh}:${mm}`
+    if (!bookedSet.has(key)) slots.push(`${hh}:${mm}`)
+    cur += duration
+  }
+  return slots
+}
+// ─────────────────────────────────────────────────────────────
+
 export default function CoachProfile() {
   const { id } = useParams()
   const router = useRouter()
-  const [coach, setCoach] = useState(null)
-  const [reviews, setReviews] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [coach,         setCoach]         = useState(null)
+  const [reviews,       setReviews]       = useState([])
+  const [availability,  setAvailability]  = useState([])
+  const [bookedSet,     setBookedSet]     = useState(new Set())
+  const [selectedDate,  setSelectedDate]  = useState(null)
+  const [loading,       setLoading]       = useState(true)
   const supabase = createClient()
 
   useEffect(() => {
@@ -28,15 +66,61 @@ export default function CoachProfile() {
         .order('created_at', { ascending: false })
         .limit(10)
       setReviews(reviewData || [])
+
+      const { data: av } = await supabase
+        .from('availability')
+        .select('*')
+        .eq('coach_id', id)
+      setAvailability(av || [])
+
+      const from = new Date().toISOString()
+      const to   = new Date(Date.now() + 28*24*60*60*1000).toISOString()
+      const { data: bk } = await supabase
+        .from('bookings')
+        .select('start_time, duration_mins')
+        .eq('coach_id', id)
+        .eq('status', 'confirmed')
+        .gte('start_time', from)
+        .lte('start_time', to)
+
+      const set = new Set()
+      ;(bk || []).forEach(b => {
+        const dt = new Date(b.start_time)
+        const dateStr = toDateStr(dt)
+        const hh = String(dt.getHours()).padStart(2,'0')
+        const mm = String(dt.getMinutes()).padStart(2,'0')
+        set.add(`${dateStr}T${hh}:${mm}`)
+      })
+      setBookedSet(set)
+
       setLoading(false)
     }
     load()
   }, [id])
 
   if (loading) return <div className="min-h-screen pt-20 flex items-center justify-center text-gray-400">Loading...</div>
-  if (!coach) return <div className="min-h-screen pt-20 flex items-center justify-center text-gray-500">Coach not found.</div>
+  if (!coach)  return <div className="min-h-screen pt-20 flex items-center justify-center text-gray-500">Coach not found.</div>
 
-  const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n)
+  const stars = n => '★'.repeat(n) + '☆'.repeat(5-n)
+
+  const availMap = Object.fromEntries(availability.map(r => [r.day_of_week, r]))
+  const next21 = Array.from({ length: 21 }, (_, i) => {
+    const d = new Date()
+    d.setDate(d.getDate() + i)
+    const dow = d.getDay()
+    return {
+      date:    toDateStr(d),
+      day:     d.getDate(),
+      month:   MONTH_NAMES[d.getMonth()],
+      dayAbbr: DAY_ABBR[dow],
+      hasAvail: !!availMap[dow],
+      dow,
+    }
+  }).filter(d => d.hasAvail)
+
+  const selectedSlots = selectedDate
+    ? getSlots(selectedDate, availMap[new Date(selectedDate + 'T12:00').getDay()], bookedSet)
+    : []
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
@@ -44,7 +128,8 @@ export default function CoachProfile() {
         <Link href="/coaches" className="text-green-700 text-sm font-medium hover:underline mb-6 inline-block">← Back to coaches</Link>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Left: Profile */}
+
+          {/* ── LEFT: Profile + Reviews ── */}
           <div className="md:col-span-2 space-y-6">
             <div className="card p-8">
               <div className="flex items-start gap-5">
@@ -123,34 +208,101 @@ export default function CoachProfile() {
             )}
           </div>
 
-          {/* Right: Booking card */}
+          {/* ── RIGHT: Pricing + Availability Booking ── */}
           <div className="space-y-4">
-            <div className="card p-6 sticky top-24">
-              <p className="text-3xl font-black text-gray-900">${coach.hourly_rate}<span className="text-gray-400 font-normal text-base">/hr</span></p>
-              <p className="text-xs text-gray-400 mt-1">15% platform fee included</p>
+            <div className="card p-6">
 
-              <div className="mt-4 space-y-2 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <span>{coach.session_types?.includes('in-person') ? '✓' : '✗'}</span>
-                  <span>In-person sessions</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>{coach.session_types?.includes('online') ? '✓' : '✗'}</span>
-                  <span>Online sessions</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>{coach.travels_to_student ? '✓' : '✗'}</span>
-                  <span>Travels to your court</span>
-                </div>
+              {/* Rate */}
+              <p className="text-3xl font-black text-gray-900">
+                ${coach.hourly_rate}
+                <span className="text-gray-400 font-normal text-base">/hr</span>
+              </p>
+              <p className="text-xs text-gray-400 mt-1">No hidden fees — you see what you pay</p>
+
+              {/* Session type chips */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {coach.session_types?.includes('in-person') && (
+                  <span className="text-xs bg-green-50 text-green-700 px-2.5 py-1 rounded-full font-medium">In-person</span>
+                )}
+                {coach.session_types?.includes('online') && (
+                  <span className="text-xs bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full font-medium">Online</span>
+                )}
+                {coach.travels_to_student && (
+                  <span className="text-xs bg-purple-50 text-purple-700 px-2.5 py-1 rounded-full font-medium">Travels to you</span>
+                )}
               </div>
 
-              <Link href={`/book/${coach.id}`}
-                className="btn-primary w-full text-center block mt-6">
-                Book a Session
-              </Link>
-              <p className="text-xs text-gray-400 text-center mt-3">You won't be charged yet</p>
+              {/* ── Availability Calendar ── */}
+              <div className="mt-6">
+                <p className="text-sm font-bold text-gray-900 mb-3">Select a date</p>
+
+                {next21.length === 0 ? (
+                  <div className="bg-gray-50 rounded-xl p-4 text-center">
+                    <p className="text-sm text-gray-500">No availability set yet.</p>
+                    <p className="text-xs text-gray-400 mt-1">Check back soon or browse other coaches.</p>
+                  </div>
+                ) : (
+                  <>
+                    {/* Date chips — horizontally scrollable */}
+                    <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
+                      {next21.map(d => (
+                        <button
+                          key={d.date}
+                          onClick={() => setSelectedDate(selectedDate === d.date ? null : d.date)}
+                          className={`flex-shrink-0 flex flex-col items-center px-3 py-2.5 rounded-xl border transition-colors text-xs
+                            ${selectedDate === d.date
+                              ? 'bg-green-800 text-white border-green-800'
+                              : 'border-gray-200 text-gray-700 hover:border-green-500 hover:bg-green-50'
+                            }`}
+                        >
+                          <span className="font-medium opacity-75">{d.dayAbbr}</span>
+                          <span className="font-black text-base mt-0.5">{d.day}</span>
+                          <span className="font-medium opacity-75 mt-0.5">{d.month}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Time slots for selected date */}
+                    {selectedDate && (
+                      <div className="mt-4">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                          Available times
+                        </p>
+                        {selectedSlots.length === 0 ? (
+                          <p className="text-sm text-gray-400">All slots on this date are booked. Try another day.</p>
+                        ) : (
+                          <div className="grid grid-cols-2 gap-2">
+                            {selectedSlots.map(slot => (
+                              <Link
+                                key={slot}
+                                href={`/book/${coach.id}?date=${selectedDate}&time=${slot}&duration=60`}
+                                className="text-center py-2 px-2 rounded-xl text-sm font-semibold border border-gray-200 text-gray-800 hover:bg-green-800 hover:text-white hover:border-green-800 transition-colors"
+                              >
+                                {fmt12(slot)}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {!selectedDate && (
+                      <p className="text-xs text-gray-400 mt-3 text-center">Pick a date to see open slots</p>
+                    )}
+                  </>
+                )}
+              </div>
+
+              {/* Trust note */}
+              <p className="text-xs text-gray-400 text-center mt-5 flex items-center justify-center gap-1.5">
+                <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Secure booking · You won't be charged yet
+              </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>

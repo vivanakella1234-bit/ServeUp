@@ -10,11 +10,16 @@ export default function BookCoach() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const wasCancelled = searchParams.get('cancelled') === 'true'
+  // Pre-fill from availability calendar link params
+  const preDate     = searchParams.get('date')     || ''
+  const preTime     = searchParams.get('time')     || ''
+  const preDuration = parseInt(searchParams.get('duration') || '60')
+
   const [coach, setCoach] = useState(null)
   const [student, setStudent] = useState(null)
-  const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
-  const [duration, setDuration] = useState(60)
+  const [date, setDate] = useState(preDate)
+  const [time, setTime] = useState(preTime)
+  const [duration, setDuration] = useState(preDuration)
   const [location, setLocation] = useState('')
   const [useCoachVenue, setUseCoachVenue] = useState(true)
   const [notes, setNotes] = useState('')
@@ -45,7 +50,7 @@ export default function BookCoach() {
   }, [coachId])
 
   const totalCents = coach ? Math.round((coach.hourly_rate * duration / 60) * 100) : 0
-  const platformFee = Math.round(totalCents * 0.15)
+  const platformFee = Math.round(totalCents * 0.10)
   const coachPayout = totalCents - platformFee
 
   async function handleBook(e) {
@@ -161,10 +166,6 @@ export default function BookCoach() {
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">${coach.hourly_rate}/hr × {duration} min</span>
                 <span className="font-semibold">${(totalCents/100).toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between text-sm text-gray-400">
-                <span>Platform fee (15%)</span>
-                <span>${(platformFee/100).toFixed(2)}</span>
               </div>
               <div className="border-t border-green-200 pt-2 flex justify-between font-bold text-green-800">
                 <span>Total charged</span>

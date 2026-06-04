@@ -14,16 +14,19 @@ export default function Home() {
         <p className="text-white/75 text-lg md:text-xl max-w-xl mb-10">
           ServeUp connects serious tennis players with verified private coaches — wherever you are. No more losing weeks of training time to a city change.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link href="/coaches" className="bg-white text-green-800 font-bold px-8 py-4 rounded-xl hover:shadow-xl transition-all hover:-translate-y-0.5">
-            Find a Coach Near Me
+        <div className="flex flex-col sm:flex-row gap-4 flex-wrap justify-center">
+          <Link href="/match" className="bg-white text-green-800 font-bold px-8 py-4 rounded-xl hover:shadow-xl transition-all hover:-translate-y-0.5">
+            🎯 Match Me with a Coach
           </Link>
-          <Link href="/auth/signup?role=coach" className="border-2 border-white/50 text-white font-semibold px-8 py-4 rounded-xl hover:border-white hover:bg-white/10 transition-all">
+          <Link href="/coaches" className="border-2 border-white/50 text-white font-semibold px-8 py-4 rounded-xl hover:border-white hover:bg-white/10 transition-all">
+            Browse All Coaches
+          </Link>
+          <Link href="/for-coaches" className="border-2 border-white/50 text-white font-semibold px-8 py-4 rounded-xl hover:border-white hover:bg-white/10 transition-all">
             I'm a Coach — List My Services
           </Link>
         </div>
         <div className="flex gap-12 mt-16">
-          {[['UTR','Verified Coaches'],['15%','Commission Only'],['Any City','Globally']].map(([num,label]) => (
+          {[['UTR','Verified Coaches'],['5 min','Profile Setup'],['Any City','Globally']].map(([num,label]) => (
             <div key={label} className="text-center">
               <div className="text-2xl font-black text-white">{num}</div>
               <div className="text-xs text-white/60 uppercase tracking-wide mt-1">{label}</div>
@@ -68,7 +71,7 @@ export default function Home() {
               ['UTR Verified','Coaches list their Universal Tennis Rating — the global standard. We verify it.'],
               ['College & Pro Background','D-I, D-II, ATP/WTA history displayed clearly on every profile.'],
               ['Verified Reviews','Reviews only from students who completed a paid session. No fake ratings.'],
-              ['Coach-set Rates','Every coach sets their own rate. ServeUp takes 15% — nothing hidden.'],
+              ['Coach-set Rates','Every coach sets their own rate. No markups — what you see is what you pay.'],
               ['USTA Certifications','PTR, USPTA certifications displayed alongside playing credentials.'],
               ['Travel Flexibility','Coaches can opt in to traveling to your court.'],
             ].map(([title,desc]) => (

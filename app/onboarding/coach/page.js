@@ -97,7 +97,7 @@ export default function CoachOnboarding() {
               Let's get your profile set up in about 2 minutes. Once it's live, students across your area will be able to find and book you instantly.
             </p>
             <div className="bg-green-50 rounded-xl p-4 text-left mb-6 space-y-2">
-              {['Set your hourly rate — you keep 85%', 'Tell students about your coaching style', 'List your UTR / USTA rating to build trust', 'Go live and start getting bookings'].map(item => (
+              {['Set your hourly rate — you keep what you earn', 'Tell students about your coaching style', 'List your UTR / USTA rating to build trust', 'Go live and start getting bookings'].map(item => (
                 <div key={item} className="flex items-center gap-2 text-sm text-green-800">
                   <svg className="w-4 h-4 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
@@ -191,7 +191,7 @@ export default function CoachOnboarding() {
                   <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 font-medium">$</span>
                   <input value={hourlyRate} onChange={e => setHourlyRate(e.target.value)} className="input pl-7" placeholder="75" type="number" min="20" />
                 </div>
-                <p className="text-xs text-gray-400 mt-1">You keep 85% — ServeUp takes a 15% platform fee</p>
+                <p className="text-xs text-gray-400 mt-1">You set your rate — see our <a href="/coaching-terms" className="underline hover:text-gray-600">Coaching Terms</a> for payout details</p>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
