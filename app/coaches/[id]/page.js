@@ -125,7 +125,7 @@ export default function CoachProfile() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       <div className="max-w-4xl mx-auto px-6 py-10">
-        <Link href="/coaches" className="text-green-700 text-sm font-medium hover:underline mb-6 inline-block">← Back to coaches</Link>
+        <Link href="/coaches" className="text-blue-700 text-sm font-medium hover:underline mb-6 inline-block">← Back to coaches</Link>
 
         <div className="grid md:grid-cols-3 gap-6">
 
@@ -133,7 +133,7 @@ export default function CoachProfile() {
           <div className="md:col-span-2 space-y-6">
             <div className="card p-8">
               <div className="flex items-start gap-5">
-                <div className="w-20 h-20 rounded-2xl bg-green-100 flex items-center justify-center text-green-800 font-bold text-3xl flex-shrink-0">
+                <div className="w-20 h-20 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-800 font-bold text-3xl flex-shrink-0">
                   {coach.profiles?.full_name?.[0]}
                 </div>
                 <div>
@@ -155,10 +155,10 @@ export default function CoachProfile() {
 
               <div className="mt-6 grid grid-cols-2 gap-4">
                 {coach.utr_rating && (
-                  <div className="bg-green-50 rounded-xl p-4">
-                    <p className="text-xs text-green-700 font-semibold uppercase tracking-wide">UTR Rating</p>
-                    <p className="text-2xl font-black text-green-800 mt-1">{coach.utr_rating}</p>
-                    {coach.utr_verified && <p className="text-xs text-green-600 mt-0.5">✓ Verified</p>}
+                  <div className="bg-blue-50 rounded-xl p-4">
+                    <p className="text-xs text-blue-700 font-semibold uppercase tracking-wide">UTR Rating</p>
+                    <p className="text-2xl font-black text-blue-800 mt-1">{coach.utr_rating}</p>
+                    {coach.utr_verified && <p className="text-xs text-blue-600 mt-0.5">✓ Verified</p>}
                   </div>
                 )}
                 {coach.college_level && (
@@ -222,7 +222,7 @@ export default function CoachProfile() {
               {/* Session type chips */}
               <div className="mt-4 flex flex-wrap gap-2">
                 {coach.session_types?.includes('in-person') && (
-                  <span className="text-xs bg-green-50 text-green-700 px-2.5 py-1 rounded-full font-medium">In-person</span>
+                  <span className="text-xs bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full font-medium">In-person</span>
                 )}
                 {coach.session_types?.includes('online') && (
                   <span className="text-xs bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full font-medium">Online</span>
@@ -251,8 +251,8 @@ export default function CoachProfile() {
                           onClick={() => setSelectedDate(selectedDate === d.date ? null : d.date)}
                           className={`flex-shrink-0 flex flex-col items-center px-3 py-2.5 rounded-xl border transition-colors text-xs
                             ${selectedDate === d.date
-                              ? 'bg-green-800 text-white border-green-800'
-                              : 'border-gray-200 text-gray-700 hover:border-green-500 hover:bg-green-50'
+                              ? 'bg-blue-800 text-white border-blue-800'
+                              : 'border-gray-200 text-gray-700 hover:border-blue-500 hover:bg-blue-50'
                             }`}
                         >
                           <span className="font-medium opacity-75">{d.dayAbbr}</span>
@@ -276,7 +276,7 @@ export default function CoachProfile() {
                               <Link
                                 key={slot}
                                 href={`/book/${coach.id}?date=${selectedDate}&time=${slot}&duration=60`}
-                                className="text-center py-2 px-2 rounded-xl text-sm font-semibold border border-gray-200 text-gray-800 hover:bg-green-800 hover:text-white hover:border-green-800 transition-colors"
+                                className="text-center py-2 px-2 rounded-xl text-sm font-semibold border border-gray-200 text-gray-800 hover:bg-blue-800 hover:text-white hover:border-blue-800 transition-colors"
                               >
                                 {fmt12(slot)}
                               </Link>

@@ -80,7 +80,7 @@ export default async function AdminDashboard() {
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
           <div>
-            <Link href="/" className="text-2xl font-black text-green-400">Serve<span className="text-white">Up</span></Link>
+            <Link href="/" className="text-2xl font-black text-blue-400">Tennis<span className="text-white">Coach</span></Link>
             <h1 className="text-3xl font-black text-white mt-1">Admin Dashboard</h1>
             <p className="text-gray-500 text-sm mt-1">Visible only to you — {ADMIN_EMAIL}</p>
           </div>
@@ -135,7 +135,7 @@ export default async function AdminDashboard() {
                       <td className="px-4 py-3 text-gray-400">{c.email}</td>
                       <td className="px-4 py-3 text-gray-400">{c.city && c.state ? `${c.city}, ${c.state}` : c.city || '—'}</td>
                       <td className="px-4 py-3">
-                        {c.utr_rating ? <span className="bg-green-900 text-green-300 px-2 py-0.5 rounded text-xs font-bold">{c.utr_rating}</span> : <span className="text-gray-600">—</span>}
+                        {c.utr_rating ? <span className="bg-blue-900 text-blue-300 px-2 py-0.5 rounded text-xs font-bold">{c.utr_rating}</span> : <span className="text-gray-600">—</span>}
                       </td>
                       <td className="px-4 py-3 text-gray-300">{c.hourly_rate ? `$${c.hourly_rate}/hr` : '—'}</td>
                       <td className="px-4 py-3 text-gray-400 max-w-[200px]">
@@ -146,11 +146,11 @@ export default async function AdminDashboard() {
                       </td>
                       <td className="px-4 py-3 text-gray-300">{c.bookingCount}</td>
                       <td className="px-4 py-3 text-gray-300">{c.completedCount}</td>
-                      <td className="px-4 py-3 text-green-400 font-semibold">{fmt$(c.totalRevenue)}</td>
+                      <td className="px-4 py-3 text-blue-400 font-semibold">{fmt$(c.totalRevenue)}</td>
                       <td className="px-4 py-3 text-gray-400">{fmt$(c.totalPayout)}</td>
                       <td className="px-4 py-3">
                         {c.onboarding_complete
-                          ? <span className="bg-green-900 text-green-400 text-xs px-2 py-0.5 rounded">Live</span>
+                          ? <span className="bg-blue-900 text-blue-400 text-xs px-2 py-0.5 rounded">Live</span>
                           : <span className="bg-yellow-900 text-yellow-400 text-xs px-2 py-0.5 rounded">Incomplete</span>}
                       </td>
                       <td className="px-4 py-3 text-gray-500 text-xs">{fmtDate(c.created_at)}</td>
@@ -188,7 +188,7 @@ export default async function AdminDashboard() {
                       <td className="px-4 py-3 text-gray-400">{s.email}</td>
                       <td className="px-4 py-3 text-gray-300">{s.bookingCount}</td>
                       <td className="px-4 py-3 text-gray-300">{s.completedCount}</td>
-                      <td className="px-4 py-3 text-green-400 font-semibold">{fmt$(s.totalSpent)}</td>
+                      <td className="px-4 py-3 text-blue-400 font-semibold">{fmt$(s.totalSpent)}</td>
                       <td className="px-4 py-3 text-gray-500 text-xs">{fmtDate(s.created_at)}</td>
                     </tr>
                   ))}
@@ -227,7 +227,7 @@ export default async function AdminDashboard() {
                     const student = enrichedStudents.find(s => s.id === b.student_id)
                     const studentName = student?.full_name || b.student_id?.slice(0, 8)
                     const statusColors = {
-                      completed: 'bg-green-900 text-green-400',
+                      completed: 'bg-blue-900 text-blue-400',
                       confirmed: 'bg-blue-900 text-blue-400',
                       pending_payment: 'bg-yellow-900 text-yellow-400',
                       cancelled: 'bg-red-900 text-red-400',
@@ -240,7 +240,7 @@ export default async function AdminDashboard() {
                         <td className="px-4 py-3 text-gray-400">{b.duration_mins} min</td>
                         <td className="px-4 py-3 text-gray-500 max-w-[150px] truncate">{b.location_address || '—'}</td>
                         <td className="px-4 py-3 text-white font-semibold">{fmt$(b.total_amount)}</td>
-                        <td className="px-4 py-3 text-green-400">{fmt$(b.platform_fee)}</td>
+                        <td className="px-4 py-3 text-blue-400">{fmt$(b.platform_fee)}</td>
                         <td className="px-4 py-3 text-gray-400">{fmt$(b.coach_payout)}</td>
                         <td className="px-4 py-3">
                           <span className={`text-xs px-2 py-0.5 rounded font-semibold ${statusColors[b.status] || 'bg-gray-800 text-gray-400'}`}>

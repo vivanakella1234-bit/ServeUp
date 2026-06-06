@@ -170,7 +170,7 @@ export default function MatchPage() {
                 {coaches.map(coach => <CoachCard key={coach.id} coach={coach} />)}
               </div>
               <div className="text-center">
-                <button onClick={restart} className="text-sm text-gray-400 hover:text-green-700 underline">
+                <button onClick={restart} className="text-sm text-gray-400 hover:text-blue-700 underline">
                   Start over with different answers
                 </button>
               </div>
@@ -184,7 +184,7 @@ export default function MatchPage() {
               </p>
               <WaitlistForm city={answers.city} />
               <div className="mt-6">
-                <button onClick={restart} className="text-sm text-gray-400 hover:text-green-700 underline">
+                <button onClick={restart} className="text-sm text-gray-400 hover:text-blue-700 underline">
                   Try a different city or format
                 </button>
               </div>
@@ -208,7 +208,7 @@ export default function MatchPage() {
           </div>
           <div className="h-1.5 bg-gray-200 rounded-full">
             <div
-              className="h-1.5 bg-green-600 rounded-full transition-all duration-500"
+              className="h-1.5 bg-blue-600 rounded-full transition-all duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -230,12 +230,12 @@ export default function MatchPage() {
                 onChange={e => setCityInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && cityInput.trim() && handleCitySubmit()}
                 placeholder={currentStep.placeholder}
-                className="w-full max-w-sm border border-gray-200 rounded-xl px-5 py-4 text-lg text-center focus:outline-none focus:ring-2 focus:ring-green-500 bg-white shadow-sm"
+                className="w-full max-w-sm border border-gray-200 rounded-xl px-5 py-4 text-lg text-center focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
               />
               <button
                 onClick={handleCitySubmit}
                 disabled={!cityInput.trim()}
-                className="bg-green-700 text-white font-bold px-10 py-3 rounded-xl hover:bg-green-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                className="bg-blue-700 text-white font-bold px-10 py-3 rounded-xl hover:bg-blue-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Find My Coaches →
               </button>
@@ -252,9 +252,9 @@ export default function MatchPage() {
                 <button
                   key={opt.value}
                   onClick={() => handleOption(opt.value)}
-                  className="bg-white border border-gray-200 rounded-2xl p-5 text-left hover:border-green-500 hover:shadow-md transition-all group"
+                  className="bg-white border border-gray-200 rounded-2xl p-5 text-left hover:border-blue-500 hover:shadow-md transition-all group"
                 >
-                  <div className="font-bold text-gray-900 group-hover:text-green-800 mb-0.5">{opt.label}</div>
+                  <div className="font-bold text-gray-900 group-hover:text-blue-800 mb-0.5">{opt.label}</div>
                   <div className="text-sm text-gray-400">{opt.desc}</div>
                 </button>
               ))}
@@ -292,10 +292,10 @@ function WaitlistForm({ city }) {
 
   if (submitted) {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-2xl px-8 py-6 max-w-sm mx-auto">
+      <div className="bg-blue-50 border border-blue-200 rounded-2xl px-8 py-6 max-w-sm mx-auto">
         <div className="text-2xl mb-2">✅</div>
-        <p className="font-bold text-green-800">You're on the list!</p>
-        <p className="text-sm text-green-700 mt-1">We'll email you as soon as a coach joins your area.</p>
+        <p className="font-bold text-blue-800">You're on the list!</p>
+        <p className="text-sm text-blue-700 mt-1">We'll email you as soon as a coach joins your area.</p>
       </div>
     )
   }
@@ -308,9 +308,9 @@ function WaitlistForm({ city }) {
         onChange={e => setEmail(e.target.value)}
         placeholder="your@email.com"
         required
-        className="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        className="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      <button type="submit" className="bg-green-700 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-800 transition whitespace-nowrap">
+      <button type="submit" className="bg-blue-700 text-white font-bold px-6 py-3 rounded-xl hover:bg-blue-800 transition whitespace-nowrap">
         Notify me
       </button>
     </form>

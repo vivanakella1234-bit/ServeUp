@@ -153,7 +153,7 @@ export default function CoachDashboard() {
           ].map(([label, val]) => (
             <div key={label} className="card p-6">
               <p className="text-xs text-gray-400 uppercase tracking-wide font-semibold">{label}</p>
-              <p className="text-3xl font-black text-green-800 mt-1">{val}</p>
+              <p className="text-3xl font-black text-blue-800 mt-1">{val}</p>
             </div>
           ))}
         </div>
@@ -190,14 +190,14 @@ export default function CoachDashboard() {
                 <div className="flex flex-wrap gap-2">
                   {SPECIALTIES.map(s => (
                     <button type="button" key={s} onClick={()=>toggleSpecialty(s)}
-                      className={`text-sm px-3 py-1.5 rounded-full border transition-colors ${form.specialties.includes(s) ? 'bg-green-800 text-white border-green-800' : 'border-gray-200 text-gray-600 hover:border-green-400'}`}>
+                      className={`text-sm px-3 py-1.5 rounded-full border transition-colors ${form.specialties.includes(s) ? 'bg-blue-800 text-white border-blue-800' : 'border-gray-200 text-gray-600 hover:border-blue-400'}`}>
                       {s}
                     </button>
                   ))}
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <input type="checkbox" id="travels" checked={form.travels_to_student} onChange={e=>setForm({...form,travels_to_student:e.target.checked})} className="w-4 h-4 accent-green-700" />
+                <input type="checkbox" id="travels" checked={form.travels_to_student} onChange={e=>setForm({...form,travels_to_student:e.target.checked})} className="w-4 h-4 accent-blue-700" />
                 <label htmlFor="travels" className="text-sm text-gray-700">I'm open to traveling to the student's court</label>
               </div>
               <div><label className="text-sm font-medium text-gray-700 block mb-1">Bio</label>
@@ -213,7 +213,7 @@ export default function CoachDashboard() {
             <div className="flex items-start justify-between mb-1">
               <h2 className="font-bold text-gray-900 text-lg">Your Availability</h2>
               {availSaved && (
-                <span className="text-xs text-green-700 bg-green-50 px-3 py-1 rounded-full font-medium">✓ Saved</span>
+                <span className="text-xs text-blue-700 bg-blue-50 px-3 py-1 rounded-full font-medium">✓ Saved</span>
               )}
             </div>
             <p className="text-sm text-gray-500 mb-6">Set the hours you're available each day. Students can only book within these windows — no direct contact info is shared.</p>
@@ -225,7 +225,7 @@ export default function CoachDashboard() {
                   <label className="flex items-center gap-2.5 cursor-pointer w-28 flex-shrink-0">
                     <div
                       onClick={() => setAvail(a => ({...a, [day]: {...a[day], active: !a[day].active}}))}
-                      className={`w-10 h-5 rounded-full transition-colors cursor-pointer flex-shrink-0 ${avail[day].active ? 'bg-green-700' : 'bg-gray-200'}`}
+                      className={`w-10 h-5 rounded-full transition-colors cursor-pointer flex-shrink-0 ${avail[day].active ? 'bg-blue-700' : 'bg-gray-200'}`}
                     >
                       <div className={`w-4 h-4 bg-white rounded-full shadow mt-0.5 transition-transform ${avail[day].active ? 'translate-x-5' : 'translate-x-0.5'}`} />
                     </div>
@@ -278,7 +278,7 @@ export default function CoachDashboard() {
         <div className="card p-8">
           <h2 className="font-bold text-gray-900 text-lg mb-4">Upcoming Sessions</h2>
           {upcoming.length === 0 ? (
-            <p className="text-gray-400 text-sm">No upcoming sessions yet. Set your availability above — students will see your open slots and book directly through ServeUp.</p>
+            <p className="text-gray-400 text-sm">No upcoming sessions yet. Set your availability above — students will see your open slots and book directly through TennisCoach.</p>
           ) : (
             <div className="space-y-3">
               {upcoming.map(b => (
@@ -289,8 +289,8 @@ export default function CoachDashboard() {
                     {b.location_address && <p className="text-xs text-gray-400 mt-0.5">📍 {b.location_address}</p>}
                   </div>
                   <div className="text-right">
-                    <p className="font-bold text-green-800">${(b.coach_payout/100).toFixed(0)}</p>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Confirmed</span>
+                    <p className="font-bold text-blue-800">${(b.coach_payout/100).toFixed(0)}</p>
+                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Confirmed</span>
                   </div>
                 </div>
               ))}

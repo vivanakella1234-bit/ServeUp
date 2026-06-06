@@ -77,14 +77,14 @@ export default function CoachOnboarding() {
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link href="/" className="text-3xl font-black text-green-800">Serve<span className="text-green-400">Up</span></Link>
+          <Link href="/" className="text-3xl font-black text-blue-800">Tennis<span className="text-blue-400">Coach</span></Link>
           <p className="text-gray-500 text-sm mt-2">Coach setup · Step {step + 1} of {STEPS.length}</p>
         </div>
 
         {/* Progress bar */}
         {step < 4 && (
           <div className="w-full bg-gray-200 rounded-full h-1.5 mb-8">
-            <div className="bg-green-700 h-1.5 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
+            <div className="bg-blue-700 h-1.5 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
           </div>
         )}
 
@@ -96,10 +96,10 @@ export default function CoachOnboarding() {
             <p className="text-gray-500 mb-6 leading-relaxed">
               Let's get your profile set up in about 2 minutes. Once it's live, students across your area will be able to find and book you instantly.
             </p>
-            <div className="bg-green-50 rounded-xl p-4 text-left mb-6 space-y-2">
+            <div className="bg-blue-50 rounded-xl p-4 text-left mb-6 space-y-2">
               {['Set your hourly rate — you keep what you earn', 'Tell students about your coaching style', 'List your UTR / USTA rating to build trust', 'Go live and start getting bookings'].map(item => (
-                <div key={item} className="flex items-center gap-2 text-sm text-green-800">
-                  <svg className="w-4 h-4 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div key={item} className="flex items-center gap-2 text-sm text-blue-800">
+                  <svg className="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                   {item}
@@ -161,7 +161,7 @@ export default function CoachOnboarding() {
                 <div className="flex flex-wrap gap-2">
                   {SPECIALTY_OPTIONS.map(s => (
                     <button type="button" key={s} onClick={() => toggleSpecialty(s)}
-                      className={`px-3 py-1.5 rounded-xl text-sm font-medium border transition-colors ${specialties.includes(s) ? 'bg-green-800 text-white border-green-800' : 'border-gray-200 text-gray-600 hover:border-green-400'}`}>
+                      className={`px-3 py-1.5 rounded-xl text-sm font-medium border transition-colors ${specialties.includes(s) ? 'bg-blue-800 text-white border-blue-800' : 'border-gray-200 text-gray-600 hover:border-blue-400'}`}>
                       {s}
                     </button>
                   ))}
@@ -224,8 +224,8 @@ export default function CoachOnboarding() {
         {/* Step 4 — Done */}
         {step === 4 && (
           <div className="card p-8 text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-10 h-10 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
             </div>
@@ -239,13 +239,6 @@ export default function CoachOnboarding() {
               <Link href="/dashboard/coach" className="btn-primary text-center">
                 Go to My Dashboard
               </Link>
-              <Link href="/coaches" className="text-green-700 text-sm font-medium hover:underline">
+              <Link href="/coaches" className="text-blue-700 text-sm font-medium hover:underline">
                 See how your profile looks to students →
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
+   

@@ -10,8 +10,8 @@ export async function generateMetadata({ params }) {
 
   if (!coach) {
     return {
-      title: 'Tennis Coach Profile | ServeUp',
-      description: 'View coach credentials and book a session on ServeUp.',
+      title: 'Tennis Coach Profile | TennisCoach',
+      description: 'View coach credentials and book a session on TennisCoach.',
     }
   }
 
@@ -22,10 +22,10 @@ export async function generateMetadata({ params }) {
 
   const descParts = [utr, city, rate].filter(Boolean)
   const description = descParts.length > 0
-    ? `${name} — ${descParts.join(' · ')}. Book a session directly on ServeUp.`
-    : `View ${name}'s coaching profile, credentials, and reviews. Book on ServeUp.`
+    ? `${name} — ${descParts.join(' · ')}. Book a session directly on TennisCoach.`
+    : `View ${name}'s coaching profile, credentials, and reviews. Book on TennisCoach.`
 
-  const title = `${name} | Tennis Coach on ServeUp`
+  const title = `${name} | Tennis Coach on TennisCoach`
 
   return {
     title,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      siteName: 'ServeUp',
+      siteName: 'TennisCoach',
       type: 'profile',
       url: `https://serveup-puce.vercel.app/coaches/${params.id}`,
     },

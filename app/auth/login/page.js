@@ -25,7 +25,7 @@ export default function Login() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 pt-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="text-3xl font-black text-green-800">Serve<span className="text-green-400">Up</span></Link>
+          <Link href="/" className="text-3xl font-black text-blue-800">Tennis<span className="text-blue-400">Coach</span></Link>
           <h1 className="text-2xl font-bold text-gray-900 mt-4">Welcome back</h1>
           <p className="text-gray-500 text-sm mt-1">Sign in to your account</p>
         </div>
@@ -45,7 +45,7 @@ export default function Login() {
             </button>
           </form>
           <p className="text-center text-sm text-gray-500 mt-6">
-            Don't have an account? <Link href="/auth/signup" className="text-green-700 font-semibold hover:underline">Sign up</Link>
+            Don't have an account? <Link href="/auth/signup" className="text-blue-700 font-semibold hover:underline">Sign up</Link>
           </p>
         </div>
       </div>

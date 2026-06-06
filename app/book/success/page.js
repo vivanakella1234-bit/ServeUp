@@ -41,7 +41,7 @@ function BookingSuccessInner() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-green-800 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-blue-800 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500">Confirming your booking...</p>
         </div>
       </div>
@@ -58,8 +58,8 @@ function BookingSuccessInner() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 pt-16">
       <div className="w-full max-w-md text-center">
-        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg className="w-10 h-10 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg className="w-10 h-10 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
@@ -93,7 +93,7 @@ function BookingSuccessInner() {
                   <span className="font-semibold text-right max-w-[200px]">{booking.location_address}</span>
                 </div>
               )}
-              <div className="border-t pt-3 flex justify-between font-bold text-green-800">
+              <div className="border-t pt-3 flex justify-between font-bold text-blue-800">
                 <span>Total paid</span>
                 <span>${(booking.total_amount / 100).toFixed(2)}</span>
               </div>
@@ -105,7 +105,7 @@ function BookingSuccessInner() {
           <Link href="/dashboard/student" className="btn-primary text-center">
             Go to My Dashboard
           </Link>
-          <Link href="/coaches" className="text-green-700 text-sm font-medium hover:underline">
+          <Link href="/coaches" className="text-blue-700 text-sm font-medium hover:underline">
             Browse more coaches
           </Link>
         </div>

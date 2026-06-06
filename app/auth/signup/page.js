@@ -34,13 +34,13 @@ function SignupForm() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 pt-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="text-3xl font-black text-green-800">Serve<span className="text-green-400">Up</span></Link>
+          <Link href="/" className="text-3xl font-black text-blue-800">Tennis<span className="text-blue-400">Coach</span></Link>
           <h1 className="text-2xl font-bold text-gray-900 mt-4">Create your account</h1>
         </div>
         <div className="card p-8">
           {roleLocked ? (
-            <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-800 rounded-xl px-4 py-3 mb-6">
-              <svg className="w-4 h-4 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="flex items-center justify-center gap-2 bg-blue-50 border border-blue-200 text-blue-800 rounded-xl px-4 py-3 mb-6">
+              <svg className="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span className="text-sm font-semibold capitalize">Signing up as a {role}</span>
@@ -49,7 +49,7 @@ function SignupForm() {
             <div className="flex bg-gray-100 rounded-xl p-1 mb-6">
               {['student','coach'].map(r => (
                 <button key={r} onClick={() => setRole(r)}
-                  className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all capitalize ${role===r ? 'bg-white text-green-800 shadow-sm' : 'text-gray-500'}`}>
+                  className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all capitalize ${role===r ? 'bg-white text-blue-800 shadow-sm' : 'text-gray-500'}`}>
                   I'm a {r}
                 </button>
               ))}
@@ -70,22 +70,4 @@ function SignupForm() {
               <label className="text-sm font-medium text-gray-700 block mb-1.5">Password</label>
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} required minLength={6} className="input" placeholder="Min. 6 characters" />
             </div>
-            <button type="submit" disabled={loading} className="btn-primary w-full">
-              {loading ? 'Creating account...' : `Create ${role} account`}
-            </button>
-          </form>
-          {role === 'coach' && (
-            <p className="text-xs text-gray-400 text-center mt-3">Founding coaches join free — no platform fee for your first 3 months.</p>
-          )}
-          <p className="text-center text-sm text-gray-500 mt-4">
-            Already have an account? <Link href="/auth/login" className="text-green-700 font-semibold hover:underline">Sign in</Link>
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default function Signup() {
-  return <Suspense><SignupForm /></Suspense>
-}
+            <button type="submit" disab

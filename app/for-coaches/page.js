@@ -1,18 +1,18 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'List Your Tennis Coaching Profile — ServeUp',
-  description: 'Join ServeUp as a founding coach. No platform fee for your first 3 months. Students find you by UTR, book and pay instantly. Setup takes 5 minutes.',
+  title: 'List Your Tennis Coaching Profile — TennisCoach',
+  description: 'Join TennisCoach as a founding coach. No platform fee for your first 3 months. Students find you by UTR, book and pay instantly. Setup takes 5 minutes.',
   openGraph: {
-    title: 'List Your Tennis Coaching Profile — ServeUp',
+    title: 'List Your Tennis Coaching Profile — TennisCoach',
     description: 'No platform fee for founding coaches. Students book and pay directly on your profile. Setup takes 5 minutes.',
     url: 'https://serveup-puce.vercel.app/for-coaches',
-    siteName: 'ServeUp',
+    siteName: 'TennisCoach',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'List Your Tennis Coaching Profile — ServeUp',
+    title: 'List Your Tennis Coaching Profile — TennisCoach',
     description: 'No platform fee for founding coaches. Students book and pay directly on your profile.',
   },
 }
@@ -20,7 +20,7 @@ export const metadata = {
 const faqs = [
   {
     q: 'Is it really free to list my profile?',
-    a: 'Yes. Creating and maintaining your profile on ServeUp is always free. ServeUp only earns when you earn — a small platform fee applies per completed session after your founding period ends. For your first 3 months as a founding coach: no fee at all. Full details are in our Coaching Terms.',
+    a: 'Yes. Creating and maintaining your profile on TennisCoach is always free. TennisCoach only earns when you earn — a small platform fee applies per completed session after your founding period ends. For your first 3 months as a founding coach: no fee at all. Full details are in our Coaching Terms.',
   },
   {
     q: 'How do I get paid?',
@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: 'Can I set my own rate?',
-    a: '100%. You decide your hourly rate. ServeUp never dictates pricing. If you charge $80/hr, students pay $80/hr. No surprise markups.',
+    a: '100%. You decide your hourly rate. TennisCoach never dictates pricing. If you charge $80/hr, students pay $80/hr. No surprise markups.',
   },
   {
     q: 'Do I need a fixed court or venue?',
@@ -36,11 +36,11 @@ const faqs = [
   },
   {
     q: 'What credentials do I need?',
-    a: 'Your UTR rating is the primary trust signal on ServeUp — it lets students see your actual playing background. USPTA/PTR certifications, college level, and pro ranking are all optional add-ons.',
+    a: 'Your UTR rating is the primary trust signal on TennisCoach — it lets students see your actual playing background. USPTA/PTR certifications, college level, and pro ranking are all optional add-ons.',
   },
   {
     q: 'What happens after my 3-month founding period?',
-    a: 'A small platform fee applies per completed session — covering Stripe payment processing, platform maintenance, and customer support. You can continue using ServeUp as long as you\'d like. See our Coaching Terms for details.',
+    a: 'A small platform fee applies per completed session — covering Stripe payment processing, platform maintenance, and customer support. You can continue using TennisCoach as long as you\'d like. See our Coaching Terms for details.',
   },
 ]
 
@@ -49,21 +49,21 @@ export default function ForCoachesPage() {
     <div className="min-h-screen bg-white">
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-green-900 via-green-800 to-green-700 pt-28 pb-20 px-6 text-center">
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 pt-28 pb-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-green-100 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-blue-100 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide">
             🎾 Founding Coach Offer — Limited Spots
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6" style={{letterSpacing: '-1.5px'}}>
             Get found. Get booked.<br />
-            <span className="text-green-400">Keep more of what you earn.</span>
+            <span className="text-blue-400">Keep more of what you earn.</span>
           </h1>
           <p className="text-white/75 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-            ServeUp puts your profile in front of students searching by city, UTR level, and specialty. They book you, pay upfront, and you get paid automatically — no invoicing, no chasing.
+            TennisCoach puts your profile in front of students searching by city, UTR level, and specialty. They book you, pay upfront, and you get paid automatically — no invoicing, no chasing.
           </p>
           <Link
             href="/auth/signup?role=coach"
-            className="inline-block bg-white text-green-800 font-black text-lg px-10 py-4 rounded-xl hover:shadow-xl transition-all hover:-translate-y-0.5"
+            className="inline-block bg-white text-blue-800 font-black text-lg px-10 py-4 rounded-xl hover:shadow-xl transition-all hover:-translate-y-0.5"
           >
             List My Profile — It's Free
           </Link>
@@ -72,9 +72,9 @@ export default function ForCoachesPage() {
       </section>
 
       {/* Founding offer banner */}
-      <section className="bg-green-600 py-5 px-6 text-center">
+      <section className="bg-blue-600 py-5 px-6 text-center">
         <p className="text-white font-bold text-base md:text-lg">
-          🎉 Founding coaches pay <span className="bg-white text-green-700 px-2 py-0.5 rounded font-black">no platform fee</span> for their first 3 months.
+          🎉 Founding coaches pay <span className="bg-white text-blue-700 px-2 py-0.5 rounded font-black">no platform fee</span> for their first 3 months.
         </p>
       </section>
 
@@ -82,8 +82,8 @@ export default function ForCoachesPage() {
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-green-600 font-semibold text-sm uppercase tracking-wider mb-3">How it works for coaches</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900">Live on ServeUp in 5 minutes.</h2>
+            <p className="text-blue-600 font-semibold text-sm uppercase tracking-wider mb-3">How it works for coaches</p>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900">Live on TennisCoach in 5 minutes.</h2>
           </div>
           <div className="grid md:grid-cols-4 gap-6">
             {[
@@ -94,7 +94,7 @@ export default function ForCoachesPage() {
             ].map(({ step, icon, title, desc }) => (
               <div key={step} className="relative">
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 h-full">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-800 font-black text-sm mb-4">{step}</div>
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-800 font-black text-sm mb-4">{step}</div>
                   <div className="text-2xl mb-3">{icon}</div>
                   <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
@@ -111,7 +111,7 @@ export default function ForCoachesPage() {
       {/* Earnings calculator */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-green-600 font-semibold text-sm uppercase tracking-wider mb-3">What you earn</p>
+          <p className="text-blue-600 font-semibold text-sm uppercase tracking-wider mb-3">What you earn</p>
           <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Your rate. Your schedule.</h2>
           <p className="text-gray-500 mb-12 max-w-xl mx-auto">You set your hourly rate. Here's what your monthly earnings look like — founding coaches keep 100% for their first 3 months.</p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -120,13 +120,13 @@ export default function ForCoachesPage() {
               { rate: '$80', sessions: 20, payout: '$1,440', label: 'Active coach (20 sessions/mo)' },
               { rate: '$120', sessions: 30, payout: '$3,240', label: 'Full-time (30 sessions/mo)' },
             ].map(({ rate, sessions, payout, label }) => (
-              <div key={label} className="bg-green-50 border border-green-100 rounded-2xl p-6">
-                <p className="text-3xl font-black text-green-800">{rate}<span className="text-base font-normal text-gray-500">/hr</span></p>
+              <div key={label} className="bg-blue-50 border border-blue-100 rounded-2xl p-6">
+                <p className="text-3xl font-black text-blue-800">{rate}<span className="text-base font-normal text-gray-500">/hr</span></p>
                 <p className="text-sm text-gray-500 mt-1">{sessions} sessions/mo</p>
-                <div className="border-t border-green-200 my-4"></div>
+                <div className="border-t border-blue-200 my-4"></div>
                 <p className="text-2xl font-black text-gray-900">{payout}</p>
                 <p className="text-xs text-gray-400 mt-1">monthly payout</p>
-                <p className="text-xs text-green-600 font-semibold mt-2">{label}</p>
+                <p className="text-xs text-blue-600 font-semibold mt-2">{label}</p>
               </div>
             ))}
           </div>
@@ -134,11 +134,11 @@ export default function ForCoachesPage() {
         </div>
       </section>
 
-      {/* Why ServeUp */}
-      <section className="py-20 px-6 bg-green-900">
+      {/* Why TennisCoach */}
+      <section className="py-20 px-6 bg-blue-900">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-green-400 font-semibold text-sm uppercase tracking-wider mb-3">Why ServeUp</p>
+            <p className="text-blue-400 font-semibold text-sm uppercase tracking-wider mb-3">Why TennisCoach</p>
             <h2 className="text-3xl md:text-4xl font-black text-white">Built for coaches who are serious about their craft.</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -152,7 +152,7 @@ export default function ForCoachesPage() {
             ].map(({ icon, title, desc }) => (
               <div key={title} className="bg-white/5 border border-white/10 rounded-2xl p-6">
                 <div className="text-2xl mb-3">{icon}</div>
-                <h3 className="text-green-400 font-bold text-sm uppercase tracking-wide mb-2">{title}</h3>
+                <h3 className="text-blue-400 font-bold text-sm uppercase tracking-wide mb-2">{title}</h3>
                 <p className="text-white/70 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -164,7 +164,7 @@ export default function ForCoachesPage() {
       <section className="py-20 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-green-600 font-semibold text-sm uppercase tracking-wider mb-3">Common questions</p>
+            <p className="text-blue-600 font-semibold text-sm uppercase tracking-wider mb-3">Common questions</p>
             <h2 className="text-3xl font-black text-gray-900">Straight answers.</h2>
           </div>
           <div className="space-y-4">
@@ -177,26 +177,16 @@ export default function ForCoachesPage() {
           </div>
           <p className="text-center text-sm text-gray-400 mt-8">
             Full payout and fee details in our{' '}
-            <Link href="/coaching-terms" className="text-green-700 font-semibold hover:underline">Coaching Terms</Link>.
+            <Link href="/coaching-terms" className="text-blue-700 font-semibold hover:underline">Coaching Terms</Link>.
           </p>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 px-6 bg-green-800 text-center">
+      <section className="py-20 px-6 bg-blue-800 text-center">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Ready to get your first ServeUp booking?</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Ready to get your first TennisCoach booking?</h2>
           <p className="text-white/70 mb-8 text-lg">Profile setup takes 5 minutes. Founding coaches pay no platform fee for 3 months.</p>
           <Link
             href="/auth/signup?role=coach"
-            className="inline-block bg-white text-green-800 font-black text-lg px-10 py-4 rounded-xl hover:shadow-xl transition-all hover:-translate-y-0.5"
-          >
-            List My Profile — It's Free
-          </Link>
-          <p className="text-white/40 text-sm mt-4">No credit card. No commitment.</p>
-        </div>
-      </section>
-
-    </div>
-  )
-}
+            className="inline

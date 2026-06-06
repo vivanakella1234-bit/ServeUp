@@ -73,13 +73,13 @@ export async function POST(request) {
     // Email to student
     if (studentEmail) {
       await resend.emails.send({
-        from: 'ServeUp <bookings@serveup.app>',
+        from: 'TennisCoach <bookings@serveup.app>',
         to: studentEmail,
         subject: `Your session with ${coachName} is confirmed!`,
         html: `
           <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; color: #1a1a1a;">
             <div style="background: #14532d; padding: 24px 32px; border-radius: 12px 12px 0 0;">
-              <h1 style="color: white; margin: 0; font-size: 24px;">Serve<span style="color: #4ade80;">Up</span></h1>
+              <h1 style="color: white; margin: 0; font-size: 24px;">Tennis<span style="color: #4ade80;">Coach</span></h1>
             </div>
             <div style="background: #f9fafb; padding: 32px; border-radius: 0 0 12px 12px; border: 1px solid #e5e7eb;">
               <h2 style="margin-top: 0;">You're booked, ${studentName}! 🎾</h2>
@@ -116,13 +116,13 @@ export async function POST(request) {
     // Email to coach
     if (coachEmail) {
       await resend.emails.send({
-        from: 'ServeUp <bookings@serveup.app>',
+        from: 'TennisCoach <bookings@serveup.app>',
         to: coachEmail,
         subject: `New booking from ${studentName}`,
         html: `
           <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; color: #1a1a1a;">
             <div style="background: #14532d; padding: 24px 32px; border-radius: 12px 12px 0 0;">
-              <h1 style="color: white; margin: 0; font-size: 24px;">Serve<span style="color: #4ade80;">Up</span></h1>
+              <h1 style="color: white; margin: 0; font-size: 24px;">Tennis<span style="color: #4ade80;">Coach</span></h1>
             </div>
             <div style="background: #f9fafb; padding: 32px; border-radius: 0 0 12px 12px; border: 1px solid #e5e7eb;">
               <h2 style="margin-top: 0;">New session booked, ${coachName}! 🎾</h2>

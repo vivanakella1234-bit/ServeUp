@@ -6,21 +6,21 @@ export default function CoachCard({ coach }) {
     <Link href={`/coaches/${coach.id}`}>
       <div className="card p-5 cursor-pointer group">
         <div className="flex items-start gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center text-green-800 font-bold text-xl flex-shrink-0">
+          <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-800 font-bold text-xl flex-shrink-0">
             {coach.profiles?.full_name?.[0] || 'C'}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-bold text-gray-900 group-hover:text-green-800 transition-colors">
+              <h3 className="font-bold text-gray-900 group-hover:text-blue-800 transition-colors">
                 {coach.profiles?.full_name}
               </h3>
-              <span className="text-green-800 font-bold text-lg whitespace-nowrap">${coach.hourly_rate}<span className="text-gray-400 font-normal text-sm">/hr</span></span>
+              <span className="text-blue-800 font-bold text-lg whitespace-nowrap">${coach.hourly_rate}<span className="text-gray-400 font-normal text-sm">/hr</span></span>
             </div>
             <p className="text-sm text-gray-500 mt-0.5">{coach.city}{coach.state ? `, ${coach.state}` : ''}</p>
             {coach.primary_venue && <p className="text-xs text-gray-400 mt-0.5">📍 {coach.primary_venue}</p>}
             <div className="flex items-center gap-3 mt-2 flex-wrap">
               {coach.utr_rating && (
-                <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-semibold">
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-semibold">
                   UTR {coach.utr_rating}
                 </span>
               )}

@@ -152,7 +152,7 @@ export default function StudentDashboard() {
                   </div>
                   <div className="text-right">
                     <p className="font-bold text-gray-900">${(b.total_amount/100).toFixed(0)}</p>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Confirmed</span>
+                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Confirmed</span>
                   </div>
                 </div>
               ))}
@@ -178,11 +178,11 @@ export default function StudentDashboard() {
                       </div>
                       <div className="flex items-center gap-3">
                         {alreadyReviewed ? (
-                          <span className="text-xs text-green-600 font-semibold">✓ Reviewed</span>
+                          <span className="text-xs text-blue-600 font-semibold">✓ Reviewed</span>
                         ) : (
                           <button
                             onClick={() => setOpenReviewId(isOpen ? null : b.id)}
-                            className="text-xs font-semibold text-green-700 border border-green-300 px-3 py-1.5 rounded-lg hover:bg-green-50 transition-colors"
+                            className="text-xs font-semibold text-blue-700 border border-blue-300 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition-colors"
                           >
                             {isOpen ? 'Cancel' : 'Leave a Review'}
                           </button>

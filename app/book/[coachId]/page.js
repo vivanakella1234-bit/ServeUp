@@ -99,7 +99,7 @@ export default function BookCoach() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       <div className="max-w-2xl mx-auto px-6 py-10">
-        <Link href={`/coaches/${coachId}`} className="text-green-700 text-sm font-medium hover:underline mb-6 inline-block">← Back to profile</Link>
+        <Link href={`/coaches/${coachId}`} className="text-blue-700 text-sm font-medium hover:underline mb-6 inline-block">← Back to profile</Link>
         <h1 className="text-2xl font-black text-gray-900 mb-2">Book a Session</h1>
         <p className="text-gray-500 text-sm mb-8">with <span className="font-semibold text-gray-700">{coach.profiles?.full_name}</span></p>
 
@@ -128,7 +128,7 @@ export default function BookCoach() {
               <div className="flex gap-2">
                 {[60,90,120].map(d => (
                   <button type="button" key={d} onClick={()=>setDuration(d)}
-                    className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors ${duration===d ? 'bg-green-800 text-white border-green-800' : 'border-gray-200 text-gray-600 hover:border-green-400'}`}>
+                    className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors ${duration===d ? 'bg-blue-800 text-white border-blue-800' : 'border-gray-200 text-gray-600 hover:border-blue-400'}`}>
                     {d} min
                   </button>
                 ))}
@@ -140,11 +140,11 @@ export default function BookCoach() {
               {coach.primary_venue && (
                 <div className="flex gap-3 mb-3">
                   <button type="button" onClick={()=>{setUseCoachVenue(true);setLocation(coach.primary_venue)}}
-                    className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors ${useCoachVenue ? 'bg-green-800 text-white border-green-800' : 'border-gray-200 text-gray-600'}`}>
+                    className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors ${useCoachVenue ? 'bg-blue-800 text-white border-blue-800' : 'border-gray-200 text-gray-600'}`}>
                     Coach's venue
                   </button>
                   <button type="button" onClick={()=>{setUseCoachVenue(false);setLocation('')}}
-                    className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors ${!useCoachVenue ? 'bg-green-800 text-white border-green-800' : 'border-gray-200 text-gray-600'}`}>
+                    className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors ${!useCoachVenue ? 'bg-blue-800 text-white border-blue-800' : 'border-gray-200 text-gray-600'}`}>
                     My court
                   </button>
                 </div>
@@ -162,12 +162,12 @@ export default function BookCoach() {
             </div>
 
             {/* Price summary */}
-            <div className="bg-green-50 rounded-xl p-4 space-y-2">
+            <div className="bg-blue-50 rounded-xl p-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">${coach.hourly_rate}/hr × {duration} min</span>
                 <span className="font-semibold">${(totalCents/100).toFixed(2)}</span>
               </div>
-              <div className="border-t border-green-200 pt-2 flex justify-between font-bold text-green-800">
+              <div className="border-t border-blue-200 pt-2 flex justify-between font-bold text-blue-800">
                 <span>Total charged</span>
                 <span>${(totalCents/100).toFixed(2)}</span>
               </div>
@@ -186,3 +186,4 @@ export default function BookCoach() {
     </div>
   )
 }
+                                                                                                                                                                                                             
