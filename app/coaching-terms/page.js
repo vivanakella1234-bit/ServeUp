@@ -92,7 +92,7 @@ export default function CoachingTermsPage() {
             className="inline-block bg-blue-800 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-900 transition">
             List My Profile — It's Free
           </Link>
-          <p className="text-gray-400 text-sm mt-3">Questions? Email us at <a href="mailto:hello@serveup.app" className="underline">hello@serveup.app</a></p>
+          <p className="text-gray-400 text-sm mt-3">Questions? Email us at <a href="mailto:hello@tenniscoach.info" className="underline">hello@tenniscoach.info</a></p>
         </div>
       </div>
     </div>
