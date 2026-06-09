@@ -173,4 +173,3 @@ export default function Navbar() {
     </nav>
   )
 }
-                    <div className="px-4 py-2 bord
