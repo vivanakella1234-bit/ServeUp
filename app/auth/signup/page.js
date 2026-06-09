@@ -70,4 +70,24 @@ function SignupForm() {
               <label className="text-sm font-medium text-gray-700 block mb-1.5">Password</label>
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} required minLength={6} className="input" placeholder="Min. 6 characters" />
             </div>
-            <button type="submit" disab
+            <button type="submit" disabled={loading} className="btn-primary w-full">
+              {loading ? 'Creating account...' : 'Create Account'}
+            </button>
+          </form>
+          <p className="text-center text-sm text-gray-600 mt-6">
+            Already have an account?{' '}
+            <Link href="/auth/login" className="text-blue-700 font-semibold hover:underline">Sign in</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupForm />
+    </Suspense>
+  )
+}

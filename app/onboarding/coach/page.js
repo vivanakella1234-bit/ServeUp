@@ -241,4 +241,11 @@ export default function CoachOnboarding() {
               </Link>
               <Link href="/coaches" className="text-blue-700 text-sm font-medium hover:underline">
                 See how your profile looks to students →
-   
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
