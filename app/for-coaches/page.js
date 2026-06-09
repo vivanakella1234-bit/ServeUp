@@ -189,4 +189,11 @@ export default function ForCoachesPage() {
           <p className="text-white/70 mb-8 text-lg">Profile setup takes 5 minutes. Founding coaches pay no platform fee for 3 months.</p>
           <Link
             href="/auth/signup?role=coach"
-            className="inline
+            className="inline-block bg-white text-blue-800 font-black px-8 py-4 rounded-xl hover:bg-blue-50 transition text-lg">
+            List My Profile — It's Free
+          </Link>
+        </div>
+      </section>
+    </div>
+  )
+}

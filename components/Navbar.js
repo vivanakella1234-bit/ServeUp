@@ -98,5 +98,79 @@ export default function Navbar() {
 
                 {/* Dropdown */}
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-lg py-2 z-50">
+                  <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-100 rounded-2xl shadow-lg py-2 z-50">
+                    <div className="px-4 py-2 border-b border-gray-100 mb-1">
+                      <p className="text-sm font-bold text-gray-900">{profile?.full_name || firstName}</p>
+                      <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+                    </div>
+                    <Link href={dashboardHref} onClick={() => setDropdownOpen(false)}
+                      className="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                      My Dashboard
+                    </Link>
+                    {!isCoach && (
+                      <Link href="/coaches" onClick={() => setDropdownOpen(false)}
+                        className="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                        Find a Coach
+                      </Link>
+                    )}
+                    <button onClick={handleSignOut}
+                      className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors">
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link href="/auth/login" className="text-sm font-semibold text-gray-700 hover:text-blue-800 transition-colors">Sign In</Link>
+              <Link href="/auth/signup" className="btn-primary text-sm py-2 px-4">Get Started</Link>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile hamburger */}
+        <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+          <div className={`w-5 h-0.5 bg-gray-700 mb-1.5 transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <div className={`w-5 h-0.5 bg-gray-700 mb-1.5 transition-all ${menuOpen ? 'opacity-0' : ''}`} />
+          <div className={`w-5 h-0.5 bg-gray-700 transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4">
+          {user && (
+            <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
+              <div className="w-8 h-8 rounded-full bg-blue-700 text-white text-sm font-black flex items-center justify-center flex-shrink-0">
+                {initial}
+              </div>
+              <div>
+                <p className="text-sm font-bold text-gray-900">{firstName}</p>
+                <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${isCoach ? 'bg-blue-200 text-blue-800' : 'bg-blue-100 text-blue-700'}`}>
+                  {isCoach ? 'Coach' : 'Student'}
+                </span>
+              </div>
+            </div>
+          )}
+          <div className="flex flex-col gap-1">
+            <Link href="/coaches" onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium text-sm py-2.5">Find a Coach</Link>
+            {!user && <Link href="/for-coaches" onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium text-sm py-2.5">List as Coach</Link>}
+            {user ? (
+              <>
+                <Link href={dashboardHref} onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium text-sm py-2.5">My Dashboard</Link>
+                <button onClick={handleSignOut} className="text-red-600 font-medium text-sm py-2.5 text-left">Sign Out</button>
+              </>
+            ) : (
+              <>
+                <Link href="/auth/login" onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium text-sm py-2.5">Sign In</Link>
+                <Link href="/auth/signup" onClick={() => setMenuOpen(false)} className="btn-primary text-center text-sm mt-2">Get Started</Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </nav>
+  )
+}
                     <div className="px-4 py-2 bord
